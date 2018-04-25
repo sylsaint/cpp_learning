@@ -2,9 +2,16 @@
 #include<string>
 #include<stdexcept>
 
+#ifndef STR_BLOB_H
+#define STR_BLOB_H
+
+class StrBlobPtr;
 class StrBlob
 {
     public:
+        friend class StrBlobPtr;
+        StrBlobPtr begin();
+        StrBlobPtr end();
         using size_type = std::vector<std::string>::size_type;
         StrBlob();
         StrBlob(std::initializer_list<std::string> il);
@@ -58,3 +65,5 @@ void StrBlob::pop_back()
     check(0, "pop_back on empty StrBlob");
     data->pop_back();
 }
+
+#endif
