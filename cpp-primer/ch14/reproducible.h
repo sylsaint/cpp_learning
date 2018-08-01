@@ -36,20 +36,23 @@ L max_extension(string s1, size_t index)
     vector<L> vl;
     for(size_t i = 0; i < index; i++)
     {
-        L nl = {i+1, 0};
-        int ln = 0;
+        L nl = {i, 0};
+        int len = 0;
         using ssize = string::size_type;
         ssize cur = i, cmp = index;
-        do {
+
+        while(len < s1.length() - index)
+        {
             if(s1[cur] == s1[cmp])
             {
-                ln += 1;
+                len += 1;
             } else {
                 break;
             }
-
-        } while(cur++ && cmp++ && cmp < s1.length());
-        nl.length = ln;
+            cur++;
+            cmp++;
+        }
+        nl.length = len;
         vl.push_back(nl);
     }
     return max_producible(vl);
